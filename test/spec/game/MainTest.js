@@ -1,23 +1,49 @@
 define(['game/Main'], function (Main) {
 
-    describe('game.Main', function () {
+    describe('spec/game/MainTest', function () {
 
-        it('Main should have a not undefined "game" property', function () {
+        describe('game.Main', function () {
 
-            var main = new Main({
-                parent: 'hidden'
+            it('Constructor don\'t should throw exception', function () {
+
+                //given 
+                var options = {
+                    parent: 'sandbox',
+                    stateFactory: jasmine.createSpyObj('stateInitializer', ['create']),
+                    stateInitializer: jasmine.createSpyObj('stateInitializer', ['registerStates', 'startState'])
+                }
+
+                //when 
+                var execute = function () {
+                    new Main(options);
+                };
+
+                //then    
+                expect(execute).not.toThrow();
             });
-            expect(main.game).not.toBeUndefined();
+
         });
 
-        it('Main should have a not null "game" property', function () {
+        describe('game.Main.run', function () {
 
-            var main = new Main({
-                parent: 'hidden'
+            it('Method don\'t should throw exception', function () {
+
+                //given
+                var options = {
+                    parent: 'sandbox',
+                    stateFactory: jasmine.createSpyObj('stateInitializer', ['create']),
+                    stateInitializer: jasmine.createSpyObj('stateInitializer', ['registerStates', 'startState'])
+                };
+                var main = new Main(options);
+
+                //when
+                var execute = function () {
+                    main.run();
+                };
+
+                //then
+                expect(execute).not.toThrow();
             });
-            expect(main.game).not.toBeNull();
         });
-
     });
-
 });

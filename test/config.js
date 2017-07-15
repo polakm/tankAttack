@@ -20,10 +20,29 @@ require.config({
     }
 });
 
+var clenUp = function () {
+   
+   setTimeout(function () {
+        
+        var node = document.getElementById('sandbox');
+        while (node && node.hasChildNodes()) {
+            
+            console.log('clean sandbox child: ' + node.firstChild.nodeName );
+            node.removeChild(node.firstChild);
+        }
+    }, 1);
+};
+
 require(['jasmine-boot'], function () {
     require([
-        'spec/game/MainTest'
+        'spec/game/MainTest',
+        'spec/game/state/StateFactoryTest',
+        'spec/game/state/StateInitializerTest',
+        'spec/game/state/load/LoadState',
+        'spec/game/state/load/PlayState',
     ], function () {
+      
         window.onload();
-    })
+        afterEach(clenUp);
+    });
 });
