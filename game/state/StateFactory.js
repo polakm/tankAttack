@@ -1,8 +1,13 @@
 define([
 	'game/state/load/LoadState',
+	'game/state/load/AssetsLoader',
+	'game/state/load/LoaderView',
 	'game/state/play/PlayState'
+
 ], function (
 	LoadState,
+	AssetsLoader,
+	LoaderView,
 	PlayState
 ) {
 
@@ -18,22 +23,43 @@ define([
 
 	StateFactory.prototype.constructor = StateFactory;
 
+	var createLoadState = function () {
+
+		var loader = new AssetsLoader({
+			'game': game
+		});
+		var view = new LoaderView({
+			'game': game
+		});
+		var loadState = new LoadState({
+			'game': game,
+			'loader': loader,
+			'view': view
+		});
+		return loadState;
+	};
+
+	var createPlayState = function () {
+
+		var playState = new PlayState({
+			'game': game,
+		});
+		return playState;
+	};
+
+
 	StateFactory.prototype.create = function (key) {
 
 		switch (key) {
 
 			case StateFactory.LOAD_STATE:
+				return createLoadState();
 
-				return new LoadState({
-					'game': game
-				});
 			case StateFactory.PLAY_STATE:
 
-				return new PlayState({
-					'game': game
-				});
-			default:
+				return createPlayState();
 
+			default:
 				throw 'key is requried argument';
 		}
 	};

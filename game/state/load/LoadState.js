@@ -1,6 +1,8 @@
 define([], function () {
 
 	var game;
+	var loader;
+	var view;
 
 	var LoadState = function LoadState(options) {
 
@@ -8,13 +10,24 @@ define([], function () {
 			throw 'options.game is required argument';
 		}
 		game = options.game;
+
+		if (!options || !options.loader) {
+			throw 'options.loader is required argument';
+		}
+		loader = options.loader;
+
+		if (!options || !options.view) {
+			throw 'options.view is required argument';
+		}
+		view = options.view;
 	};
 
 	LoadState.prototype.constructor = LoadState;
 
 	LoadState.prototype.preload = function () {
 
-		this.game.debug.text('This is a load state', 100, 100);
+		view.show();
+		loader.load();
 	};
 
 	LoadState.prototype.create = function () {

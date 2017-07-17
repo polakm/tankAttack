@@ -28,6 +28,8 @@ require(['jasmine-boot'], function () {
         'spec/game/state/StateFactoryTest',
         'spec/game/state/StateInitializerTest',
         'spec/game/state/load/LoadStateTest',
+        'spec/game/state/load/LoaderViewTest',
+        'spec/game/state/load/AssetsLoaderTest',
         'spec/game/state/play/PlayStateTest',
     ], function (CleanUpSandbox) {
 
