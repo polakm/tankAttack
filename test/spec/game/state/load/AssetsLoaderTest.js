@@ -51,7 +51,7 @@ define(['game/state/load/AssetsLoader'], function (AssetsLoader) {
             });
         });
 
-        describe('game.state.load.LoaderView.show', function () {
+        describe('game.state.load.AssetsLoader.load', function () {
 
             it('Method dont\'t should throw exception.', function () {
 
