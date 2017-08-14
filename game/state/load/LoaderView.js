@@ -1,6 +1,7 @@
-define([], function () {
+define(['phaser'], function (Phaser) {
 
 	var game;
+	var text;
 	var LoaderView = function LoaderView(options) {
 
 		if (!options || !options.game) {
@@ -13,11 +14,10 @@ define([], function () {
 
 	LoaderView.prototype.show = function () {
 
-		 game.add.text(100, 200, 'loading assets...', {
+		new Phaser.Text(game, 100, 200, 'loading assets...', {
 			font: '32px Courier',
 			fill: '#fff'
 		});
-
 	};
 
 	return LoaderView;

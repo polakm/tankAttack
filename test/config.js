@@ -31,6 +31,12 @@ require(['jasmine-boot'], function () {
         'spec/game/state/load/LoaderViewTest',
         'spec/game/state/load/AssetsLoaderTest',
         'spec/game/state/play/PlayStateTest',
+        'spec/game/world/WorldFactoryTest',
+        'spec/game/world/WorldTest',
+        'spec/game/item/ItemsProviderTest',
+        'spec/game/item/ItemFactoryTest',
+        // 'spec/game/item/player/PlayerTest',
+        // 'spec/game/item/land/LandTest'
     ], function (CleanUpSandbox) {
 
         window.onload();

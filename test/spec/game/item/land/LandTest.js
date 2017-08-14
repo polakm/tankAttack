@@ -1,8 +1,8 @@
-define(['game/state/StateFactory'], function (StateFactory) {
+define(['game/world/WorldFactory'], function (WorldFactory) {
 
-    describe('spec/game/state/StateFactoryTest', function () {
+    describe('spec/game/world/WorldFactoryTest', function () {
 
-        describe('game.state.StateFactory', function () {
+        describe('game.world.WorldFactory', function () {
 
             it('Consturctor don\'t should throw exception', function () {
 
@@ -14,7 +14,7 @@ define(['game/state/StateFactory'], function (StateFactory) {
 
                 //when 
                 var execute = function () {
-                    new StateFactory(options);
+                    new WorldFactory(options);
                 };
 
                 //then    
@@ -28,7 +28,7 @@ define(['game/state/StateFactory'], function (StateFactory) {
 
                 //when 
                 var execute = function () {
-                    new StateFactory(options);
+                    new WorldFactory(options);
                 };
 
                 //then    
@@ -44,7 +44,7 @@ define(['game/state/StateFactory'], function (StateFactory) {
 
                 //when 
                 var execute = function () {
-                    new StateFactory(options);
+                    new WorldFactory(options);
                 };
 
                 //then    
@@ -60,11 +60,11 @@ define(['game/state/StateFactory'], function (StateFactory) {
                 var options = {
                     'game': new Phaser.Game(32, 24, Phaser.AUTO, 'sandbox')
                 };
-                var stateFactory = new StateFactory(options);
+                var worldFactory = new WorldFactory(options);
 
                 //when
                 var execute = function () {
-                    stateFactory.create();
+                    worldFactory.create();
                 };
 
                 //then
@@ -77,11 +77,11 @@ define(['game/state/StateFactory'], function (StateFactory) {
                 var options = {
                     'game': new Phaser.Game(32, 24, Phaser.AUTO, 'sandbox')
                 };
-                var stateFactory = new StateFactory(options);
+                var worldFactory = new WorldFactory(options);
 
                 //when
                 var execute = function () {
-                    stateFactory.create(null);
+                    worldFactory.create(null);
                 };
 
                 //then
@@ -95,11 +95,11 @@ define(['game/state/StateFactory'], function (StateFactory) {
                 var options = {
                     'game': new Phaser.Game(32, 24, Phaser.AUTO, 'sandbox')
                 };
-                var stateFactory = new StateFactory(options);
+                var worldFactory = new WorldFactory(options);
 
                 //when
                 var execute = function () {
-                    stateFactory.create('unknown');
+                    worldFactory.create('unknown');
                 };
 
                 //then
@@ -109,12 +109,12 @@ define(['game/state/StateFactory'], function (StateFactory) {
             it('Method with argumen value "load" should return instance of LoadState', function () {
 
                 //given
-                var stateFactory = new StateFactory({
+                var worldFactory = new WorldFactory({
                     'game': new Phaser.Game(32, 24, Phaser.AUTO, 'sandbox')
                 });
 
                 //when
-                var state = stateFactory.create('load');
+                var world = worldFactory.create();
 
                 //then
                 expect(state.constructor.name).toEqual('LoadState');
@@ -123,12 +123,12 @@ define(['game/state/StateFactory'], function (StateFactory) {
             it('Method with argument value "play" should return instance of PlayState', function () {
 
                 //given
-                var stateFactory = new StateFactory({
+                var worldFactory = new WorldFactory({
                     'game': new Phaser.Game(32, 24, Phaser.AUTO, 'sandbox')
                 });
 
                 //when
-                var state = stateFactory.create('play');
+                var world = worldFactory.create('play');
 
                 //then
                 expect(state.constructor.name).toEqual('PlayState');

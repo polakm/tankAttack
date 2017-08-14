@@ -2,13 +2,19 @@ define([
 	'game/state/load/LoadState',
 	'game/state/load/AssetsLoader',
 	'game/state/load/LoaderView',
-	'game/state/play/PlayState'
+	'game/state/play/PlayState',
+	'game/item/ItemFactory',
+	'game/item/ItemsProvider',
+	'game/world/WorldFactory'
 
 ], function (
 	LoadState,
 	AssetsLoader,
 	LoaderView,
-	PlayState
+	PlayState,
+	ItemFactory,
+	ItemsProvider,
+	WorldFactory
 ) {
 
 	var game;
@@ -41,8 +47,22 @@ define([
 
 	var createPlayState = function () {
 
+		var itemFactory = new ItemFactory({
+			'game': game
+		});
+
+		var	itemsProvider = new ItemsProvider({
+			'itemFactory': itemFactory
+		});
+
+		var worldFacotry = new WorldFactory({
+			'game': game,
+			'itemsProvider': itemsProvider
+		});
+
 		var playState = new PlayState({
 			'game': game,
+			'worldFactory': worldFacotry,
 		});
 		return playState;
 	};

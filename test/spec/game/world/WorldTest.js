@@ -1,20 +1,20 @@
-define(['game/state/play/PlayState'], function (PlayState) {
+define(['game/world/World'], function (World) {
 
-    describe('spec/game/state/play/PlayStateTest', function () {
+    describe('spec/game/world/World', function () {
 
-        describe('game.state.play.PlayState', function () {
+        describe('game.world.World', function () {
 
-            it('Constructor don\'t should throw exception', function () {
+            it('Consturctor don\'t should throw exception', function () {
 
                 //given 
+                var game = new Phaser.Game(32, 24, Phaser.AUTO, 'sandbox');
                 var options = {
-                    'game': new Phaser.Game(32, 24, Phaser.AUTO, 'sandbox'),
-                    'worldFactory': jasmine.createSpyObj('worldFactory', ['create'])
+                    'game': game,
                 };
 
                 //when 
                 var execute = function () {
-                    new PlayState(options);
+                    new World(options);
                 };
 
                 //then    
@@ -28,7 +28,7 @@ define(['game/state/play/PlayState'], function (PlayState) {
 
                 //when 
                 var execute = function () {
-                    new PlayState(options);
+                    new World(options);
                 };
 
                 //then    
@@ -39,36 +39,35 @@ define(['game/state/play/PlayState'], function (PlayState) {
 
                 //given 
                 var options = {
-                    'game': new Phaser.Game(32, 24, Phaser.AUTO, 'sandbox'),
-                    'worldFactory': undefined
+                    'game': undefined,
+                    'bounds': {x:0,y:0,width:32,height:24}
                 };
 
                 //when 
                 var execute = function () {
-                    new PlayState(options);
+                    new World(options);
                 };
 
                 //then    
                 expect(execute).toThrow();
             });
 
-            it('Consturctor without argument "options.worldFactory" should throw exception.', function () {
+              it('Consturctor without argument "options.bounds" don\'t should throw exception.', function () {
 
                 //given 
                 var options = {
-                    'game': undefined,
-                    'worldFactory': jasmine.createSpyObj('worldFactory', ['create'])
+                    'game': new Phaser.Game(32, 24, Phaser.AUTO, 'sandbox'),
+                    'bounds': undefined
                 };
 
                 //when 
                 var execute = function () {
-                    new PlayState(options);
+                    new World(options);
                 };
 
                 //then    
-                expect(execute).toThrow();
+                expect(execute).not.toThrow();
             });
-
         });
     });
 });

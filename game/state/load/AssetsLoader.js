@@ -13,7 +13,10 @@ define([], function () {
 
 	AssetsLoader.prototype.load = function () {
 		
+		game.load.text('level1', 'game/assets/levels/level1.json');
 		game.load.image('earth', 'game/assets/ground_earth.png');
+		game.load.atlas('tank', 'game/assets/tanks.png', 'game/assets/tanks.json');
+
 	};
 
 	return AssetsLoader;

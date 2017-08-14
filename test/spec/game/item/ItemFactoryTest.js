@@ -1,8 +1,8 @@
-define(['game/state/StateFactory'], function (StateFactory) {
+define(['game/item/ItemFactory'], function (ItemFactory) {
 
-    describe('spec/game/state/StateFactoryTest', function () {
+    describe('spec/game/item/ItemFactoryTest', function () {
 
-        describe('game.state.StateFactory', function () {
+        describe('game.item.ItemFactory', function () {
 
             it('Consturctor don\'t should throw exception', function () {
 
@@ -14,7 +14,7 @@ define(['game/state/StateFactory'], function (StateFactory) {
 
                 //when 
                 var execute = function () {
-                    new StateFactory(options);
+                    new ItemFactory(options);
                 };
 
                 //then    
@@ -28,7 +28,7 @@ define(['game/state/StateFactory'], function (StateFactory) {
 
                 //when 
                 var execute = function () {
-                    new StateFactory(options);
+                    new ItemFactory(options);
                 };
 
                 //then    
@@ -44,7 +44,7 @@ define(['game/state/StateFactory'], function (StateFactory) {
 
                 //when 
                 var execute = function () {
-                    new StateFactory(options);
+                    new ItemFactory(options);
                 };
 
                 //then    
@@ -52,7 +52,7 @@ define(['game/state/StateFactory'], function (StateFactory) {
             });
         });
 
-        describe('game.state.StateFactory.create', function () {
+        describe('game.item.ItemFactory.create', function () {
 
             it('Method without argument should throw exception', function () {
 
@@ -60,11 +60,11 @@ define(['game/state/StateFactory'], function (StateFactory) {
                 var options = {
                     'game': new Phaser.Game(32, 24, Phaser.AUTO, 'sandbox')
                 };
-                var stateFactory = new StateFactory(options);
+                var itemFactory = new ItemFactory(options);
 
                 //when
                 var execute = function () {
-                    stateFactory.create();
+                    itemFactory.create();
                 };
 
                 //then
@@ -77,11 +77,11 @@ define(['game/state/StateFactory'], function (StateFactory) {
                 var options = {
                     'game': new Phaser.Game(32, 24, Phaser.AUTO, 'sandbox')
                 };
-                var stateFactory = new StateFactory(options);
+                var itemFactory = new ItemFactory(options);
 
                 //when
                 var execute = function () {
-                    stateFactory.create(null);
+                    itemFactory.create(null);
                 };
 
                 //then
@@ -95,43 +95,29 @@ define(['game/state/StateFactory'], function (StateFactory) {
                 var options = {
                     'game': new Phaser.Game(32, 24, Phaser.AUTO, 'sandbox')
                 };
-                var stateFactory = new StateFactory(options);
+                var itemFactory = new ItemFactory(options);
 
                 //when
                 var execute = function () {
-                    stateFactory.create('unknown');
+                    itemFactory.create('unknown');
                 };
 
                 //then
                 expect(execute).toThrow();
             });
 
-            it('Method with argumen value "load" should return instance of LoadState', function () {
+            it('Method with argument value "land" should return instance of Land', function () {
 
                 //given
-                var stateFactory = new StateFactory({
+                var itemFactory = new ItemFactory({
                     'game': new Phaser.Game(32, 24, Phaser.AUTO, 'sandbox')
                 });
 
                 //when
-                var state = stateFactory.create('load');
+                var item = itemFactory.create('land');
 
                 //then
-                expect(state.constructor.name).toEqual('LoadState');
-            });
-
-            it('Method with argument value "play" should return instance of PlayState', function () {
-
-                //given
-                var stateFactory = new StateFactory({
-                    'game': new Phaser.Game(32, 24, Phaser.AUTO, 'sandbox')
-                });
-
-                //when
-                var state = stateFactory.create('play');
-
-                //then
-                expect(state.constructor.name).toEqual('PlayState');
+                expect(item.constructor.name).toEqual('Land');
             });
         });
     });
